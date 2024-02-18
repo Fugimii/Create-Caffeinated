@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "pattern": [
+    "   ",
+    "Q Q",
+    "QQQ"
+  ],
+  "result": {
+    "item": "ccaffeinated:tea_cup"
+  },
+  "show_notification": true
+}

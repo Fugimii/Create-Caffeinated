@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "ccaffeinated:block/tea_bush_stage1"
+  }
+}

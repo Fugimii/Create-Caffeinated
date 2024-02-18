@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ccaffeinated:item/withered_tea_leaves"
+  }
+}

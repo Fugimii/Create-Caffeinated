@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "ccaffeinated:green_tea",
+    "ccaffeinated:flowing_green_tea",
+    "ccaffeinated:black_tea",
+    "ccaffeinated:flowing_black_tea",
+    "ccaffeinated:white_tea",
+    "ccaffeinated:flowing_white_tea"
+  ]
+}

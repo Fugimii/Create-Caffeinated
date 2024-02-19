@@ -3,10 +3,13 @@
 
   "item.ccaffeinated.tea_leaves": "Tea Leaves",
   "item.ccaffeinated.withered_tea_leaves": "Withered Tea Leaves",
+  "item.ccaffeinated.dried_tea_leaves": "Dried Tea Leaves",
 
   "item.ccaffeinated.green_tea_bucket": "Green Tea Bucket",
   "item.ccaffeinated.black_tea_bucket": "Black Tea Bucket",
   "item.ccaffeinated.white_tea_bucket": "White Tea Bucket",
 
-  "block.ccaffeinated.green_tea_block": "Green Tea"
+  "block.ccaffeinated.green_tea_block": "Green Tea",
+  "block.ccaffeinated.black_tea_block": "Black Tea",
+  "block.ccaffeinated.white_tea_block": "White Tea"
 }

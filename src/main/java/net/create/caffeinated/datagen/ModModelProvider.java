@@ -16,13 +16,14 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TEA_RACK);
+
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.TEA_LEAVES, Models.GENERATED);
         itemModelGenerator.register(ModItems.WITHERED_TEA_LEAVES, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DRIED_TEA_LEAVES, Models.GENERATED);
         itemModelGenerator.register(ModItems.TEA_CUP, Models.GENERATED);
         itemModelGenerator.register(ModFluids.GREEN_TEA_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModFluids.BLACK_TEA_BUCKET, Models.GENERATED);

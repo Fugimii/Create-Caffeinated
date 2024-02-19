@@ -1,6 +1,7 @@
-// 1.20.1	2024-02-18T12:03:16.305812138	CreateCaffeinated/Model Definitions
+// 1.20.1	2024-02-19T16:54:14.459544512	CreateCaffeinated/Model Definitions
 beb2c2ddc170936860df704c15c8977c04d3d477 assets/ccaffeinated/models/item/green_tea_bucket.json
 722ea1091391a75caa8f8e14042e4273b414230c assets/ccaffeinated/models/item/black_tea_bucket.json
+3b0f6ee3d730ffa7c58e18ee2a835c24703ec1d4 assets/ccaffeinated/models/item/dried_tea_leaves.json
 26ea9ee3db9e2c0bb267dba099ff7c9bc777bda9 assets/ccaffeinated/models/item/withered_tea_leaves.json
 8744aaec569392429a6b0152e1a4178c12a6e250 assets/ccaffeinated/models/item/white_tea_bucket.json
 d4bc3b4bd48886b7e9f2c12486e15a4b56b1ca4d assets/ccaffeinated/models/item/tea_leaves.json

@@ -18,6 +18,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.TEA_CUP)).entries((displayContext, entries) -> {
                         entries.add(ModItems.TEA_LEAVES);
                         entries.add(ModItems.WITHERED_TEA_LEAVES);
+                        entries.add(ModItems.DRIED_TEA_LEAVES);
                         entries.add(ModItems.TEA_CUP);
 
                         entries.add(ModFluids.GREEN_TEA_BUCKET);

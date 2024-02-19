@@ -13,7 +13,7 @@ public class CreateCaffeinatedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEA_BUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEA_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEA_RACK, RenderLayer.getCutout());
 
         // Green Tea
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),

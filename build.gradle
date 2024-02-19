@@ -24,6 +24,7 @@ repositories {
 	maven { url = "https://maven.tterrag.com/" } // Flywheel
 	maven { url = "https://maven.dragons.plus/releases" } // DragonLib
 	maven { url = "https://maven.dragons.plus/snapshots" } // DragonLib snapshot
+	maven { url = "https://api.modrinth.com/maven" } // Modrinth
 }
 
 fabricApi {
@@ -40,6 +41,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_version}")
+
+	modLocalRuntime("com.terraformersmc:modmenu:${mod_menu_version}")
 }
 
 processResources {

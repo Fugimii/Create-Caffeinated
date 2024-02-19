@@ -3,13 +3,17 @@
 	"id": "ccaffeinated",
 	"version": "${version}",
 	"name": "CreateCaffeinated",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod that adds Tea and Coffee to Minecraft :D",
 	"authors": [
-		"Me!"
+		"Fugimii(Dev)",
+		"Baconzilla_(Dev)",
+		"RedBackBite(Lead Artist)",
+		"Cheezyman09(Artist)",
+		"Spicy_Ramen5546(Artist)"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Fugimii/Create-Caffeinated"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/ccaffeinated/icon.png",

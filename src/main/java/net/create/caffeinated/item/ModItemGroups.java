@@ -1,5 +1,6 @@
 package net.create.caffeinated.item;
 
+import net.create.caffeinated.block.ModBlocks;
 import net.create.caffeinated.fluid.ModFluids;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.create.caffeinated.CreateCaffeinated;
@@ -23,6 +24,7 @@ public class ModItemGroups {
                         entries.add(ModFluids.BLACK_TEA_BUCKET);
                         entries.add(ModFluids.WHITE_TEA_BUCKET);
 
+                        entries.add(ModBlocks.TEA_RACK);
                     }).build());
 
     public static void registerItemGroups() {

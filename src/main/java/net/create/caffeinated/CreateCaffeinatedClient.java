@@ -13,6 +13,7 @@ public class CreateCaffeinatedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEA_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TEA_BUSH, RenderLayer.getCutout());
 
         // Green Tea
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
@@ -22,7 +23,7 @@ public class CreateCaffeinatedClient implements ClientModInitializer {
                 new SimpleFluidRenderHandler(
                         new Identifier("minecraft:block/water_still"),
                         new Identifier("minecraft:block/water_flow"),
-                        0x61916d
+                        0x609816
                 ));
 
         // Black Tea

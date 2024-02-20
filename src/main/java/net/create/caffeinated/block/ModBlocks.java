@@ -1,7 +1,7 @@
 package net.create.caffeinated.block;
 
 import net.create.caffeinated.block.custom.TeaBushBlock;
-import net.create.caffeinated.block.custom.TeaRackBlock;
+import net.create.caffeinated.block.custom.DryingRackBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.create.caffeinated.CreateCaffeinated;
@@ -17,8 +17,8 @@ public class ModBlocks {
     public static final Block TEA_BUSH = registerBlock("tea_bush",
             new TeaBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
-    public static final Block TEA_RACK = registerBlockWithItem("tea_rack",
-            new TeaRackBlock(FabricBlockSettings.copyOf(Blocks.SCAFFOLDING).collidable(true).nonOpaque()));
+    public static final Block DRYING_RACK = registerBlockWithItem("drying_rack",
+            new DryingRackBlock(FabricBlockSettings.copyOf(Blocks.SCAFFOLDING).nonOpaque().collidable(false)));
 
     private static Block registerBlock(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(CreateCaffeinated.MOD_ID, name), block);

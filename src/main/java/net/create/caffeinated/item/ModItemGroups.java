@@ -25,7 +25,7 @@ public class ModItemGroups {
                         entries.add(ModFluids.BLACK_TEA_BUCKET);
                         entries.add(ModFluids.WHITE_TEA_BUCKET);
 
-                        entries.add(ModBlocks.TEA_RACK);
+                        entries.add(ModBlocks.DRYING_RACK);
                     }).build());
 
     public static void registerItemGroups() {

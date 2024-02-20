@@ -1,6 +1,7 @@
 package net.create.caffeinated;
 
 import net.create.caffeinated.block.ModBlocks;
+import net.create.caffeinated.block.entity.ModBlockEntities;
 import net.create.caffeinated.fluid.ModFluids;
 import net.create.caffeinated.item.ModItemGroups;
 import net.create.caffeinated.item.ModItems;
@@ -19,6 +20,7 @@ public class CreateCaffeinated implements ModInitializer {
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerBlockEntities();
 		ModFluids.registerModFluids();
 	}
 }

@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "full=false": {"model": "ccaffeinated:block/tea_rack"},
-    "full=true":  {"model": "ccaffeinated:block/tea_rack_full"}
-  }
-}

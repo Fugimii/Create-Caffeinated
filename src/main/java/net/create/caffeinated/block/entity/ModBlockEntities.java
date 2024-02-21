@@ -9,9 +9,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
-    public static final BlockEntityType<DryingRackBlockEntity> DRYING_RACK_BLOCK_ENTITY =
+    public static final BlockEntityType<WitheringRackBlockEntity> DRYING_RACK_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(CreateCaffeinated.MOD_ID, "drying_rack_be"),
-                    FabricBlockEntityTypeBuilder.create(DryingRackBlockEntity::new,
+                    FabricBlockEntityTypeBuilder.create(WitheringRackBlockEntity::new,
                             ModBlocks.DRYING_RACK).build());
 
     public static void registerBlockEntities() {

@@ -1,6 +1,6 @@
 package net.create.caffeinated.block.custom;
 
-import net.create.caffeinated.block.entity.DryingRackBlockEntity;
+import net.create.caffeinated.block.entity.WitheringRackBlockEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -15,16 +15,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class DryingRackBlock extends BlockWithEntity {
+public class WitheringRackBlock extends BlockWithEntity {
 
-    public DryingRackBlock(Settings settings) {
+    public WitheringRackBlock(Settings settings) {
         super(settings);
     }
 
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new DryingRackBlockEntity(pos, state);
+        return new WitheringRackBlockEntity(pos, state);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class DryingRackBlock extends BlockWithEntity {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack playerItem = player.getStackInHand(hand);
-        DryingRackBlockEntity dryingRackBlockEntity;
+        WitheringRackBlockEntity witheringRackBlockEntity;
         BlockEntity blockEntity = world.getBlockEntity(pos);
 
-        if (blockEntity instanceof DryingRackBlockEntity) {
-            dryingRackBlockEntity = ((DryingRackBlockEntity) blockEntity);
+        if (blockEntity instanceof WitheringRackBlockEntity) {
+            witheringRackBlockEntity = ((WitheringRackBlockEntity) blockEntity);
 
-            dryingRackBlockEntity.addItem(player, playerItem, 100);
+            witheringRackBlockEntity.addItem(player, playerItem, 100);
         }
 
         return super.onUse(state, world, pos, player, hand, hit);
@@ -53,8 +53,8 @@ public class DryingRackBlock extends BlockWithEntity {
             return;
         }
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof DryingRackBlockEntity) {
-            ItemScatterer.spawn(world, pos, ((DryingRackBlockEntity)blockEntity).getItemsBeingWithered());
+        if (blockEntity instanceof WitheringRackBlockEntity) {
+            ItemScatterer.spawn(world, pos, ((WitheringRackBlockEntity)blockEntity).getItemsBeingWithered());
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }

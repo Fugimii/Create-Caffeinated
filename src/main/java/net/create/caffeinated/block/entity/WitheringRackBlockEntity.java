@@ -10,21 +10,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-public class DryingRackBlockEntity extends BlockEntity {
+public class WitheringRackBlockEntity extends BlockEntity {
     private final DefaultedList<ItemStack> itemsBeingWithered = DefaultedList.ofSize(4, ItemStack.EMPTY);
     private final int[] witheringTimes = new int[4];
     private final int[] witheringTotalTimes = new int[4];
 
 
-    public DryingRackBlockEntity(BlockPos pos, BlockState state) {
+    public WitheringRackBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DRYING_RACK_BLOCK_ENTITY, pos, state);
     }
 
-    public boolean addItem(@Nullable Entity user, ItemStack stack, int dryTime) {
+    public boolean addItem(@Nullable Entity user, ItemStack stack, int witherTime) {
         for (int i = 0; i < this.itemsBeingWithered.size(); ++i) {
             ItemStack itemStack = this.itemsBeingWithered.get(i);
             if (!itemStack.isEmpty()) continue;
-            this.witheringTotalTimes[i] = dryTime;
+            this.witheringTotalTimes[i] = witherTime;
             this.witheringTimes[i] = 0;
             this.itemsBeingWithered.set(i, stack.split(1));
             this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));

@@ -17,7 +17,7 @@ public class WitheringRackBlockEntity extends BlockEntity {
 
 
     public WitheringRackBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.DRYING_RACK_BLOCK_ENTITY, pos, state);
+        super(ModBlockEntities.WITHERING_RACK_BLOCK_ENTITY, pos, state);
     }
 
     public boolean addItem(@Nullable Entity user, ItemStack stack, int witherTime) {

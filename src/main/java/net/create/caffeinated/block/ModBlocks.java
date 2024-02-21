@@ -17,7 +17,7 @@ public class ModBlocks {
     public static final Block TEA_BUSH = registerBlock("tea_bush",
             new TeaBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
-    public static final Block DRYING_RACK = registerBlockWithItem("drying_rack",
+    public static final Block WITHERING_RACK = registerBlockWithItem("drying_rack",
             new WitheringRackBlock(FabricBlockSettings.copyOf(Blocks.SCAFFOLDING).nonOpaque().collidable(true)));
 
     private static Block registerBlock(String name, Block block) {

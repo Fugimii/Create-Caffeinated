@@ -11,27 +11,31 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class DryingRackBlockEntity extends BlockEntity {
-    private final DefaultedList<ItemStack> itemsBeingDried = DefaultedList.ofSize(4, ItemStack.EMPTY);
-    private final int[] cookingTimes = new int[4];
-    private final int[] cookingTotalTimes = new int[4];
+    private final DefaultedList<ItemStack> itemsBeingWithered = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final int[] witheringTimes = new int[4];
+    private final int[] witheringTotalTimes = new int[4];
 
 
     public DryingRackBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DRYING_RACK_BLOCK_ENTITY, pos, state);
     }
 
-    public boolean addItem(@Nullable Entity user, ItemStack stack, int cookTime) {
-        for (int i = 0; i < this.itemsBeingDried.size(); ++i) {
-            ItemStack itemStack = this.itemsBeingDried.get(i);
+    public boolean addItem(@Nullable Entity user, ItemStack stack, int dryTime) {
+        for (int i = 0; i < this.itemsBeingWithered.size(); ++i) {
+            ItemStack itemStack = this.itemsBeingWithered.get(i);
             if (!itemStack.isEmpty()) continue;
-            this.cookingTotalTimes[i] = cookTime;
-            this.cookingTimes[i] = 0;
-            this.itemsBeingDried.set(i, stack.split(1));
+            this.witheringTotalTimes[i] = dryTime;
+            this.witheringTimes[i] = 0;
+            this.itemsBeingWithered.set(i, stack.split(1));
             this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));
             this.updateListeners();
             return true;
         }
         return false;
+    }
+
+    public DefaultedList<ItemStack> getItemsBeingWithered() {
+        return this.itemsBeingWithered;
     }
 
     private void updateListeners() {

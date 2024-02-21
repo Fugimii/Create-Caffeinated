@@ -1,12 +1,15 @@
 package net.create.caffeinated.block.custom;
 
+import net.create.caffeinated.block.entity.ModBlockEntities;
 import net.create.caffeinated.block.entity.WitheringRackBlockEntity;
 import net.create.caffeinated.item.ModItems;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.CampfireBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
@@ -15,6 +18,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -60,7 +64,7 @@ public class WitheringRackBlock extends BlockWithEntity {
             return ActionResult.CONSUME;
         }
 
-        // The campfire might be full, so the item couldn't be added.
+        // The withering rack might be full, so the item couldn't be added.
         return ActionResult.PASS;
     }
 
@@ -75,5 +79,15 @@ public class WitheringRackBlock extends BlockWithEntity {
             ItemScatterer.spawn(world, pos, ((WitheringRackBlockEntity)blockEntity).getItemsBeingWithered());
         }
         super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if (!world.isClient) {
+            BlockEntityType<WitheringRackBlockEntity> WitheringRackBlockEntity;
+            return WitheringRackBlock.checkType(type, ModBlockEntities.WITHERING_RACK_BLOCK_ENTITY, net.create.caffeinated.block.entity.WitheringRackBlockEntity::serverTick);
+        }
+        return null;
     }
 }

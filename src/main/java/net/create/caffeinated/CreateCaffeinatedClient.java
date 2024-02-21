@@ -1,12 +1,15 @@
 package net.create.caffeinated;
 
 import net.create.caffeinated.block.ModBlocks;
+import net.create.caffeinated.block.entity.ModBlockEntities;
+import net.create.caffeinated.block.entity.render.WitheringRackEntityRenderer;
 import net.create.caffeinated.fluid.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.Identifier;
 
 public class CreateCaffeinatedClient implements ClientModInitializer {
@@ -47,6 +50,8 @@ public class CreateCaffeinatedClient implements ClientModInitializer {
                         new Identifier("minecraft:block/water_flow"),
                         0xc2c2c2
                 ));
+
+        BlockEntityRendererFactories.register(ModBlockEntities.WITHERING_RACK_BLOCK_ENTITY, WitheringRackEntityRenderer::new);
 
     }
 }

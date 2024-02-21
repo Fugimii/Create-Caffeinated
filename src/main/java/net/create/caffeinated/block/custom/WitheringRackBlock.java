@@ -40,15 +40,15 @@ public class WitheringRackBlock extends BlockWithEntity {
         // Get the item the player is holding
         ItemStack item = player.getStackInHand(hand);
 
-        // Check if the player clicked on a campfire
+        // Check if the player clicked on a withering rack
         if (!(world.getBlockEntity(pos) instanceof WitheringRackBlockEntity)) {
             return ActionResult.PASS;
         }
 
-        // Get the campfire block entity
+        // Get the withering rack block entity
         WitheringRackBlockEntity witheringRack = (WitheringRackBlockEntity) world.getBlockEntity(pos);
 
-        // Check if the item can be cooked in the campfire
+        // Check if the item can be cooked in the withering rack
         if (!item.isOf(ModItems.TEA_LEAVES)) {
             return ActionResult.PASS;
         }
@@ -56,13 +56,12 @@ public class WitheringRackBlock extends BlockWithEntity {
         // Try to add the item to the campfire
         if (!world.isClient && witheringRack.addItem(player, item.copy(), 100)) {
 
-            // Success! Update player stats and return success.
-            player.incrementStat(Stats.INTERACT_WITH_CAMPFIRE);
-            return ActionResult.SUCCESS;
+            // Success! Return success.
+            return ActionResult.CONSUME;
         }
 
         // The campfire might be full, so the item couldn't be added.
-        return ActionResult.CONSUME;
+        return ActionResult.PASS;
     }
 
 

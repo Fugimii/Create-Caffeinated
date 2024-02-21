@@ -1,12 +1,14 @@
 package net.create.caffeinated.block.custom;
 
 import net.create.caffeinated.block.entity.WitheringRackBlockEntity;
+import net.create.caffeinated.item.ModItems;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -14,6 +16,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class WitheringRackBlock extends BlockWithEntity {
 
@@ -32,20 +36,35 @@ public class WitheringRackBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
-    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack playerItem = player.getStackInHand(hand);
-        WitheringRackBlockEntity witheringRackBlockEntity;
-        BlockEntity blockEntity = world.getBlockEntity(pos);
+        // Get the item the player is holding
+        ItemStack item = player.getStackInHand(hand);
 
-        if (blockEntity instanceof WitheringRackBlockEntity) {
-            witheringRackBlockEntity = ((WitheringRackBlockEntity) blockEntity);
-
-            witheringRackBlockEntity.addItem(player, playerItem, 100);
+        // Check if the player clicked on a campfire
+        if (!(world.getBlockEntity(pos) instanceof WitheringRackBlockEntity)) {
+            return ActionResult.PASS;
         }
 
-        return super.onUse(state, world, pos, player, hand, hit);
+        // Get the campfire block entity
+        WitheringRackBlockEntity witheringRack = (WitheringRackBlockEntity) world.getBlockEntity(pos);
+
+        // Check if the item can be cooked in the campfire
+        if (!item.isOf(ModItems.TEA_LEAVES)) {
+            return ActionResult.PASS;
+        }
+
+        // Try to add the item to the campfire
+        if (!world.isClient && witheringRack.addItem(player, item.copy(), 100)) {
+
+            // Success! Update player stats and return success.
+            player.incrementStat(Stats.INTERACT_WITH_CAMPFIRE);
+            return ActionResult.SUCCESS;
+        }
+
+        // The campfire might be full, so the item couldn't be added.
+        return ActionResult.CONSUME;
     }
+
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

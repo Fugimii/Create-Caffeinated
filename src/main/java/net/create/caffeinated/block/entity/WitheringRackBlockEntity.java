@@ -28,22 +28,23 @@ public class WitheringRackBlockEntity extends BlockEntity {
 
     public static void serverTick(World world, BlockPos pos, BlockState state, WitheringRackBlockEntity witheringRack) {
         boolean bl = false;
-        for (int i = 0; i < witheringRack.itemsBeingWithered.size(); ++i) {
+        for (int i = 0; i < witheringRack.itemsBeingWithered.size(); ++i) { // Loop through all items
             ItemStack itemStack = witheringRack.itemsBeingWithered.get(i);
-            if (itemStack.isEmpty()) continue;
-            bl = true;
+            if (itemStack.isEmpty()) continue; // ignore if there isn't an item
+            bl = true; // mojank variable name
             int n = i;
-            witheringRack.witheringTimes[n] = witheringRack.witheringTimes[n] + 1;
+            witheringRack.witheringTimes[n] = witheringRack.witheringTimes[n] + 1; // withering item by one
 
-            if (witheringRack.witheringTimes[n] >= witheringRack.witheringTotalTimes[n]) {
-                ItemScatterer.spawn(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModItems.WITHERED_TEA_LEAVES.getDefaultStack());
-                witheringRack.itemsBeingWithered.set(i, ItemStack.EMPTY);
+            if (witheringRack.witheringTimes[n] >= witheringRack.witheringTotalTimes[n]) { // If withering is finished
+//                ItemScatterer.spawn(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModItems.WITHERED_TEA_LEAVES.getDefaultStack());
+                witheringRack.itemsBeingWithered.set(i, ModItems.WITHERED_TEA_LEAVES.getDefaultStack());
+                witheringRack.witheringTotalTimes[n] = Integer.MAX_VALUE; // Kinda hacky tbh, oh well
                 world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
                 world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(state));
             }
         }
         if (bl) {
-            CampfireBlockEntity.markDirty(world, pos, state);
+            WitheringRackBlockEntity.markDirty(world, pos, state);
         }
     }
 
@@ -59,6 +60,22 @@ public class WitheringRackBlockEntity extends BlockEntity {
             this.witheringTotalTimes[i] = witherTime;
             this.witheringTimes[i] = 0;
             this.itemsBeingWithered.set(i, stack.split(1));
+            this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));
+            this.updateListeners();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean dropItems(@Nullable Entity user) {
+        for (int i = 0; i < this.itemsBeingWithered.size(); ++i) {
+            ItemStack itemStack = this.itemsBeingWithered.get(i);
+
+            // If the stack is empty \or it's not a withered item just ignore it
+            if (!itemStack.isEmpty()) continue;
+
+            ItemScatterer.spawn(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModItems.WITHERED_TEA_LEAVES.getDefaultStack()); // Drop the item
+
             this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));
             this.updateListeners();
             return true;

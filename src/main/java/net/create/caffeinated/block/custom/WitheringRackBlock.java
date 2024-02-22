@@ -1,5 +1,6 @@
 package net.create.caffeinated.block.custom;
 
+import net.create.caffeinated.CreateCaffeinated;
 import net.create.caffeinated.block.entity.ModBlockEntities;
 import net.create.caffeinated.block.entity.WitheringRackBlockEntity;
 import net.create.caffeinated.item.ModItems;
@@ -52,19 +53,18 @@ public class WitheringRackBlock extends BlockWithEntity {
         // Get the withering rack block entity
         WitheringRackBlockEntity witheringRack = (WitheringRackBlockEntity) world.getBlockEntity(pos);
 
-        // Check if the item can be cooked in the withering rack
-        if (!item.isOf(ModItems.TEA_LEAVES)) {
-            return ActionResult.PASS;
+        // Try to add the item to the withering rack
+        if (!world.isClient && witheringRack.addItem(player, item.copy(), 100) && item.isOf(ModItems.TEA_LEAVES)) {
+            return ActionResult.SUCCESS;
         }
 
-        // Try to add the item to the campfire
-        if (!world.isClient && witheringRack.addItem(player, item.copy(), 100)) {
+        if (!world.isClient) {
 
-            // Success! Return success.
-            return ActionResult.CONSUME;
+            CreateCaffeinated.LOGGER.info("Clicked");
+
+            return ActionResult.SUCCESS;
         }
 
-        // The withering rack might be full, so the item couldn't be added.
         return ActionResult.PASS;
     }
 

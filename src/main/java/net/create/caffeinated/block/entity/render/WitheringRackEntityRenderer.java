@@ -40,8 +40,6 @@ public class WitheringRackEntityRenderer implements BlockEntityRenderer<Witherin
             matrices.scale(1f, 0.005f, 1f);
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
 
-            CreateCaffeinated.LOGGER.info(String.valueOf(itemStack));
-
             itemRenderer.renderItem(itemStack.getItem().getDefaultStack(), ModelTransformationMode.GUI, getLightLevel(entity.getWorld(),
                     entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, entity.getWorld(), 1);
 

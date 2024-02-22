@@ -1,12 +1,19 @@
 package net.create.caffeinated.block.entity;
 
+import net.create.caffeinated.CreateCaffeinated;
 import net.create.caffeinated.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.CampfireBlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -66,5 +73,43 @@ public class WitheringRackBlockEntity extends BlockEntity {
     private void updateListeners() {
         this.markDirty();
         this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        int[] is;
+        super.readNbt(nbt);
+        this.itemsBeingWithered.clear();
+        Inventories.readNbt(nbt, this.itemsBeingWithered);
+        if (nbt.contains("WitheringTimes", NbtElement.INT_ARRAY_TYPE)) {
+            is = nbt.getIntArray("WitheringTimes");
+            System.arraycopy(is, 0, this.witheringTimes, 0, Math.min(this.witheringTotalTimes.length, is.length));
+        }
+        if (nbt.contains("WitheringTotalTimes", NbtElement.INT_ARRAY_TYPE)) {
+            is = nbt.getIntArray("WitheringTotalTimes");
+            System.arraycopy(is, 0, this.witheringTotalTimes, 0, Math.min(this.witheringTotalTimes.length, is.length));
+        }
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, this.itemsBeingWithered, true);
+        nbt.putIntArray("WitheringTimes", this.witheringTimes);
+        nbt.putIntArray("WitheringTotalTimes", this.witheringTotalTimes);
+    }
+
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        NbtCompound nbtCompound = new NbtCompound();
+        Inventories.writeNbt(nbtCompound, this.itemsBeingWithered, true);
+        return nbtCompound;
     }
 }

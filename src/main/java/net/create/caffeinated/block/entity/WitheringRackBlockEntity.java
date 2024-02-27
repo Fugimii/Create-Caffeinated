@@ -74,7 +74,10 @@ public class WitheringRackBlockEntity extends BlockEntity {
             // If the stack is empty \or it's not a withered item just ignore it
             if (!itemStack.isEmpty()) continue;
 
+            this.itemsBeingWithered.set(i, ItemStack.EMPTY);
+
             ItemScatterer.spawn(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ModItems.WITHERED_TEA_LEAVES.getDefaultStack()); // Drop the item
+            CreateCaffeinated.LOGGER.info(String.valueOf(this.itemsBeingWithered.get(i)));
 
             this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));
             this.updateListeners();

@@ -1,5 +1,6 @@
 package net.create.caffeinated.block.entity.render;
 
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
 import net.create.caffeinated.CreateCaffeinated;
 import net.create.caffeinated.block.custom.WitheringRackBlock;
 import net.create.caffeinated.block.entity.WitheringRackBlockEntity;

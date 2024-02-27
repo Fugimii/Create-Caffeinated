@@ -45,6 +45,10 @@ public class WitheringRackBlock extends BlockWithEntity {
         // Get the item the player is holding
         ItemStack item = player.getStackInHand(hand);
 
+        if (!item.isOf(ModItems.TEA_LEAVES)) { // Check if player is holding tea leaves
+            return ActionResult.PASS;
+        }
+
         // Check if the player clicked on a withering rack
         if (!(world.getBlockEntity(pos) instanceof WitheringRackBlockEntity)) {
             return ActionResult.PASS;
@@ -57,6 +61,8 @@ public class WitheringRackBlock extends BlockWithEntity {
         if (!world.isClient && witheringRack.addItem(player, item.copy(), 100) && item.isOf(ModItems.TEA_LEAVES)) {
             return ActionResult.SUCCESS;
         }
+
+        witheringRack.dropItems(player);
 
         if (!world.isClient) {
 

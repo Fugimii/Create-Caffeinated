@@ -4,7 +4,9 @@ import com.simibubi.create.foundation.block.IBE;
 
 import net.create.caffeinated.content.ModBlockEntities;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class KettleBlock extends HorizontalDirectionalBlock implements IBE<KettleBlockEntity> {
 

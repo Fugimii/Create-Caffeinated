@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.create.caffeinated.CreateCaffeinatedMod;
 import net.create.caffeinated.content.tea.kettle.KettleBlock;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -17,6 +18,7 @@ public class ModBlocks {
 			.blockstate((c, p) -> p.simpleBlock(c.getEntry(), // Is this the right way to do this???
 					p.models().getExistingFile(p.modLoc("block/kettle")))
 			)
+			.addLayer(() -> RenderType::cutout)
 			.item()
 			.build()
 			.register();

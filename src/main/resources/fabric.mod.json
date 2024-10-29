@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "caffeinated",
+  "version": "${version}",
+  "name": "Create Caffeinted",
+  "description": "An addition to Create that adds items like tea and coffee!",
+  "authors": [
+    "Fugimii"
+  ],
+  "contact": {
+    "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
+  },
+  "license": "GPLv3.0",
+  "icon": "assets/caffeinated/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.create.caffeinated.CreateCaffeinatedMod"
+    ],
+    "fabric-datagen": [
+      "net.create.caffeinated.CreateCaffeinatedDataGenerator"
+    ]
+  },
+  "mixins": [
+    "caffeinated.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "create": "${create_version}",
+    "minecraft": "${minecraft_version}"
+  }
+}

@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
 import net.create.caffeinated.content.ModBlockEntities;
 import net.create.caffeinated.content.ModBlocks;
+import net.create.caffeinated.content.ModCreativeModTabs;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.ResourceLocation;
@@ -30,6 +31,7 @@ public class CreateCaffeinatedMod implements ModInitializer {
 
 		ModBlocks.register();
 		ModBlockEntities.register();
+		ModCreativeModTabs.register();
 		REGISTRATE.register();
 	}
 

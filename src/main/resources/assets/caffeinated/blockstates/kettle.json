@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,support=false": {
+      "model": "caffeinated:block/kettle",
+      "y": 90
+    },
+    "facing=north,support=false": {
+      "model": "caffeinated:block/kettle"
+    },
+    "facing=south,support=false": {
+      "model": "caffeinated:block/kettle",
+      "y": 180
+    },
+    "facing=west,support=false": {
+      "model": "caffeinated:block/kettle",
+      "y": 270
+    },
+    "facing=east,support=true": {
+      "model": "caffeinated:block/kettle_with_supports",
+      "y": 90
+    },
+    "facing=north,support=true": {
+      "model": "caffeinated:block/kettle_with_supports"
+    },
+    "facing=south,support=true": {
+      "model": "caffeinated:block/kettle_with_supports",
+      "y": 180
+    },
+    "facing=west,support=true": {
+      "model": "caffeinated:block/kettle_with_supports",
+      "y": 270
+    }
+  }
+}

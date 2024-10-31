@@ -4,10 +4,10 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.create.caffeinated.CreateCaffeinatedMod;
 import net.create.caffeinated.content.tea.kettle.KettleBlock;
+import net.create.caffeinated.content.tea.kettle.KettleBlockItem;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
 
-import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static net.create.caffeinated.CreateCaffeinatedMod.REGISTRATE;
 
 public class ModBlocks {
@@ -15,11 +15,10 @@ public class ModBlocks {
 	public static final BlockEntry<KettleBlock> KETTLE = REGISTRATE.block("kettle", KettleBlock::new)
 			.initialProperties(() -> Blocks.LIGHTNING_ROD)
 			.lang("Kettle")
-			.blockstate((c, p) -> p.simpleBlock(c.getEntry(), // Is this the right way to do this???
-					p.models().getExistingFile(p.modLoc("block/kettle")))
-			)
 			.addLayer(() -> RenderType::cutout)
-			.item()
+			// we have a custom blockstate so there is no need
+			.blockstate((ctx, prov) -> {})
+			.item(KettleBlockItem::new)
 			.build()
 			.register();
 

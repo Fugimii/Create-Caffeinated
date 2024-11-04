@@ -1,5 +1,6 @@
 package net.create.caffeinated.content.tea.kettle;
 
+import com.simibubi.create.content.kinetics.deployer.DeployerBlock;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 
@@ -13,7 +14,7 @@ public class KettleBlockEntity extends SmartBlockEntity {
 	public KettleBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 	}
-	
+
 	@Override
 	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
 }

@@ -1,9 +1,10 @@
 package net.create.caffeinated.content.tea.kettle;
 
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 
-import net.create.caffeinated.CreateCaffeinatedMod;
 import net.create.caffeinated.content.ModBlockEntities;
+import net.create.caffeinated.content.ModShapes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -20,7 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class KettleBlock extends HorizontalDirectionalBlock implements IBE<KettleBlockEntity> {
+public class KettleBlock extends HorizontalDirectionalBlock implements IBE<KettleBlockEntity>, IWrenchable {
 	public static final BooleanProperty support = BooleanProperty.create("support");
 
 	public KettleBlock(Properties properties) {
@@ -31,10 +31,8 @@ public class KettleBlock extends HorizontalDirectionalBlock implements IBE<Kettl
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
 		if (level.getBlockState(pos.below()).getBlock() instanceof CampfireBlock) {
-			CreateCaffeinatedMod.LOGGER.info("Kettle is supported");
 			level.setBlockAndUpdate(pos, state.setValue(support, true));
 		} else {
-			CreateCaffeinatedMod.LOGGER.info("Kettle isn't supported");
 			level.setBlockAndUpdate(pos, state.setValue(support, false));
 			support.value(false);
 		}
@@ -70,7 +68,6 @@ public class KettleBlock extends HorizontalDirectionalBlock implements IBE<Kettl
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		// Define the collision shape here
-		return Shapes.box(0.1875D, 0.0D, 0.1875D, 0.8125D, 0.5D, 0.8125D); // Example shape
+		return Shapes.box(0.1875D, 0.0D, 0.1875D, 0.8125D, 0.5D, 0.8125D);
 	}
 }
